@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bictori.unity
     guid: 01eb219733185d84a8a7d91be515210c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Juego2.unity
     guid: 223609452f58482488306e8d1defa616
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Pong.unity
     guid: 5d161117b9df2974aa2d005966a6065e
   - enabled: 1
