@@ -25,7 +25,7 @@ public class Bola : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && puedoLanzar == true)
         {
             transform.SetParent(null); //1. Me desemparento.
-            rb.isKinematic = false; //2. Bola pasa a dinámico (con físicas)
+            rb.bodyType = RigidbodyType2D.Dynamic; //2. Bola pasa a dinï¿½mico (con fï¿½sicas)
             //3. Se aplica un impulso.
             rb.AddForce(new Vector2(1, 1).normalized * 10, ForceMode2D.Impulse);
             puedoLanzar = false;
@@ -50,8 +50,8 @@ public class Bola : MonoBehaviour
     }
     private void ResetearBola()
     {
-        rb.velocity = Vector2.zero; //0. Suprimimos la velocidad que traigamos.
-        rb.isKinematic = true; //1. Paso de nuevo a cinemático (no físicas)
+        rb.linearVelocity = Vector2.zero; //0. Suprimimos la velocidad que traigamos.
+        rb.isKinematic = true; //1. Paso de nuevo a cinemï¿½tico (no fï¿½sicas)
         transform.SetParent(pala.transform); //2. Volvemos a emparentar la bola.
         transform.localPosition = new Vector3(0, 1, 0); //3. Recolocamos la bola.
         puedoLanzar = true;
