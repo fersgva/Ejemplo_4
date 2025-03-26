@@ -9,7 +9,7 @@ public class Pala : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.Translate(new Vector3(1, 0, 0) * 5 * Time.deltaTime);
     }
