@@ -17,6 +17,9 @@ TagManager:
   - Coin
   - Puerta
   - Base
+  - Bloque
+  - ZonaDeMuerte
+  - Muro
   layers:
   - Default
   - TransparentFX
