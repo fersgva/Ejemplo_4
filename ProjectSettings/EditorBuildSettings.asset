@@ -5,17 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Bictori.unity
-    guid: 01eb219733185d84a8a7d91be515210c
-  - enabled: 0
-    path: Assets/Scenes/Juego2.unity
-    guid: 223609452f58482488306e8d1defa616
-  - enabled: 0
-    path: Assets/Scenes/Pong.unity
-    guid: 5d161117b9df2974aa2d005966a6065e
   - enabled: 1
-    path: Assets/DV_I/ClaseI/DVI_ClaseI.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MenuPrincipal.unity
+    guid: 6d6cdd6307597094a9c52c4532edd18e
+  - enabled: 1
+    path: Assets/Scenes/Nivel1.unity
+    guid: 24ec8fb8f6900034da35ee98a43b5c8c
+  - enabled: 1
+    path: Assets/Scenes/Nivel2.unity
+    guid: cc3d9815837506845807d289fdf00c4a
+  - enabled: 1
+    path: Assets/Scenes/SimulacroExm.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
