@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace ClaseIV
+namespace DVII.ClaseIV_ControlesMoviles.Scripts
 {
     public class Player : MonoBehaviour
     {
@@ -28,27 +26,20 @@ namespace ClaseIV
             Movimiento();
             DelimitarMovimiento();
 
-
-#if UNITY_STANDALONE
+            
             if(Input.GetKey(KeyCode.Space) && temporizador > ratioDisparo)
             {
-                Disparar();
+                Instantiate(disparoPrefab, spawnPoint1.transform.position, Quaternion.identity);
+                Instantiate(disparoPrefab, spawnPoint2.transform.position, Quaternion.identity);
+                temporizador = 0;
             }
-#endif
 
         }
         void Movimiento()
         {
-#if UNITY_STANDALONE
             float inputH = Input.GetAxisRaw("Horizontal");
             float inputV = Input.GetAxisRaw("Vertical");
             transform.Translate(new Vector2(inputH, inputV).normalized * velocidad * Time.deltaTime);
-#endif
-#if UNITY_ANDROID
-            float inputH = joystick.Horizontal;
-            float inputV = joystick.Vertical;
-            transform.Translate(new Vector2(inputH, inputV) * velocidad * Time.deltaTime);
-#endif
         }
         void DelimitarMovimiento()
         {
@@ -56,13 +47,6 @@ namespace ClaseIV
             float yClamped = Mathf.Clamp(transform.position.y, -4.5f, 4.5f);
             transform.position = new Vector3(xClamped, yClamped, 0);
         }
-        public void Disparar()
-        {
-            Instantiate(disparoPrefab, spawnPoint1.transform.position, Quaternion.identity);
-            Instantiate(disparoPrefab, spawnPoint2.transform.position, Quaternion.identity);
-            temporizador = 0;
-        }
-
         private void OnTriggerEnter2D(Collider2D elOtro)
         {
             if(elOtro.gameObject.CompareTag("DisparoEnemigo") || elOtro.gameObject.CompareTag("Enemigo"))
