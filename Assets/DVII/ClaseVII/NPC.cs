@@ -49,9 +49,9 @@ public class NPC : MonoBehaviour
             CalcularNuevoDestino();
             anim.SetBool("walking", true);
             
-            while (transform.position != posicionObjetivo) //Va al ritmo de los frames pero corta bajo la condición establecida.
+            while (transform.position != posicionObjetivo) //Va al ritmo de los frames pero corta bajo la condiciï¿½n establecida.
             {
-                //Movimiento cinemático (no tiene físicas)
+                //Movimiento cinemï¿½tico (no tiene fï¿½sicas)
                 transform.position = Vector3.MoveTowards(transform.position, posicionObjetivo, velocidadMovimiento * Time.deltaTime);
                 yield return null;
             }
@@ -63,39 +63,27 @@ public class NPC : MonoBehaviour
 
     private void CalcularNuevoDestino()
     {
-        bool tileValido = false;
-        int intentos = 0;
-
-        while(!tileValido && intentos < 15)
+        Vector3[] direcciones = new Vector3[]
         {
-            int prob = Random.Range(0, 4);
-            if(prob == 0)
-            {
-                posicionObjetivo = transform.position + Vector3.left;
-                anim.SetFloat("h", -1);
-                anim.SetFloat("v", 0);
-            }
-            else if(prob == 1)
-            {
-                posicionObjetivo = transform.position + Vector3.right;
-                anim.SetFloat("h", 1);
-                anim.SetFloat("v", 0);
-            }
-            else if (prob == 2)
-            {
-                posicionObjetivo = transform.position + Vector3.up;
-                anim.SetFloat("v", 1);
-                anim.SetFloat("h", 0);
-            }
-            else
-            {
-                posicionObjetivo = transform.position + Vector3.down;
-                anim.SetFloat("v", -1);
-                anim.SetFloat("h", 0);
-            }
+            Vector3.left,
+            Vector3.right,
+            Vector3.up,
+            Vector3.down
+        };
+        float[] hValues = { -1, 1, 0, 0 };
+        float[] vValues = { 0, 0, 1, -1 };
+        
+        bool tileValido = false;
+
+        while(!tileValido)
+        {
+            int index = Random.Range(0, direcciones.Length);
+            posicionObjetivo = transform.position + direcciones[index];
+        
+            anim.SetFloat("h", hValues[index]);
+            anim.SetFloat("v", vValues[index]);
 
             tileValido = TileLibreYDentroDeDistancia();
-            intentos++;
         }
     }
 
@@ -105,9 +93,9 @@ public class NPC : MonoBehaviour
         {
             return false;
         }
-        else //El tile está dentro de la distancia máxima...
+        else //El tile estï¿½ dentro de la distancia mï¿½xima...
         {
-            //Pero ahora voy a comprobar si está ocupado o no
+            //Pero ahora voy a comprobar si estï¿½ ocupado o no
             return !Physics2D.OverlapCircle(posicionObjetivo, radioDeteccion, queEsObstaculo);
         }
     }

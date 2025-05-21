@@ -15,7 +15,9 @@ namespace DVII.ClaseIV_ControlesMoviles.Scripts
         // Start is called before the first frame update
         void Start()
         {
-        
+#if UNITY_STANDALONE
+            joystick.gameObject.SetActive(false);
+#endif
         }
 
         // Update is called once per frame
@@ -29,17 +31,31 @@ namespace DVII.ClaseIV_ControlesMoviles.Scripts
             
             if(Input.GetKey(KeyCode.Space) && temporizador > ratioDisparo)
             {
-                Instantiate(disparoPrefab, spawnPoint1.transform.position, Quaternion.identity);
-                Instantiate(disparoPrefab, spawnPoint2.transform.position, Quaternion.identity);
-                temporizador = 0;
+                Disparar();
             }
 
         }
+
+        public void Disparar()
+        {
+            Instantiate(disparoPrefab, spawnPoint1.transform.position, Quaternion.identity);
+            Instantiate(disparoPrefab, spawnPoint2.transform.position, Quaternion.identity);
+            temporizador = 0;
+        }
         void Movimiento()
         {
-            float inputH = Input.GetAxisRaw("Horizontal");
-            float inputV = Input.GetAxisRaw("Vertical");
-            transform.Translate(new Vector2(inputH, inputV).normalized * velocidad * Time.deltaTime);
+            float hJoystick = joystick.Horizontal;
+            float vJoystick = joystick.Vertical;
+            
+#if UNITY_STANDALONE
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
+            transform.Translate(new Vector2(h, v).normalized * velocidad * Time.deltaTime);
+#endif
+            
+#if UNITY_ANDROID
+            transform.Translate(new Vector2(joystick.Horizontal, joystick.Vertical) * velocidad * Time.deltaTime);
+#endif
         }
         void DelimitarMovimiento()
         {
